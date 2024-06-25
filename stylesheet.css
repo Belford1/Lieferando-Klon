@@ -156,7 +156,9 @@ header {
     display: flex;
     font-size: 30px;
   }
-
+  .dishesContainer div{
+    border: 1px solid #000000;
+  }
 /* ---------------------------------BurgerIcon */
   #navIcon{
     width: 60px;
