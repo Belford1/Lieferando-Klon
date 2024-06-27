@@ -4,7 +4,8 @@
 function init() {
     let topImg = document.getElementById('topContainer');
     let info = document.getElementById('infoContainer');
-    
+     
+
     topImg.innerHTML = '<img src="img/pizza-5275191_1280.jpg" alt="">';
     info.innerHTML = `
 <div class="info">
@@ -23,11 +24,38 @@ function init() {
 
 </div>
     `;
+
+    for (let i = 0; i < dishes.length; i++) {
+        const dishesContainer = document.getElementById('dishesContainer');
+        
+       
+        dishesContainer.innerHTML += `
+            <div class="dishesContainers">
+                <div>
+                    <div class="dishes">
+                        <h3>${dishes[i].name}</h3>
+                        <div onclick="" id="cross${i}" class="cross">
+                            <img src="img/kreuz.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="dishesInfo">
+
+                    <h5> ${dishes[i].info}</h5>
+                </div>
+                <div>
+
+                    <h5> ${dishes[i].price} €</h5>
+                </div>
+    
+  
+  `;
+}
 }
 
 
 // BurgerMenu
-document.getElementById("navIcon").classList.toggle("open");
+// document.getElementById("navIcon").classList.toggle("open");
 
 
 function toggleMenu() {
