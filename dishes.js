@@ -55,3 +55,11 @@ let dishes = [
     price: 13.90
 },
 ];
+
+let basket = [
+{
+    name:[],
+    price:[0],
+    deliveryCosts:[1]
+},
+];
