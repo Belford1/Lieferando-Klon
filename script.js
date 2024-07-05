@@ -1,14 +1,9 @@
-
-
-
 function init() {
-    let topImg = document.getElementById('topContainer');
-    let info = document.getElementById('infoContainer');
+  let topImg = document.getElementById("topContainer");
+  let info = document.getElementById("infoContainer");
 
-        
-
-    topImg.innerHTML = '<img src="img/pizza-5275191_1280.jpg" alt="">';
-    info.innerHTML = `
+  topImg.innerHTML = '<img src="img/pizza-5275191_1280.jpg" alt="">';
+  info.innerHTML = `
 <div class="info">
 <div>   
 <h2>Osteria Bella Napoli</h2>
@@ -25,12 +20,11 @@ function init() {
 
 </div>
     `;
-    
-    for (let i = 0; i < dishes.length; i++) {
-        const dishesContainer = document.getElementById('dishesContainer');
 
-       
-        dishesContainer.innerHTML += `
+  for (let i = 0; i < dishes.length; i++) {
+    const dishesContainer = document.getElementById("dishesContainer");
+
+    dishesContainer.innerHTML += `
             <div class="dishesContainers">
                 <div>
                     <div class="dishes">
@@ -51,16 +45,13 @@ function init() {
     
   
   `;
-  
+  }
+}
+function renderBasket() {
+  const basketContainer = document.getElementById("basketContainer");
 
-}
-renderBasket()
-}
-function renderBasket(){
-    const basketContainer = document.getElementById('basketContainer');
-    
-    basketContainer.innerHTML = ``;
-    basketContainer.innerHTML += `
+  basketContainer.innerHTML = ``;
+  basketContainer.innerHTML += `
     <div class="hedlineBasket">
         <h3>Warenkorb</h3>
     </div>
@@ -68,30 +59,19 @@ function renderBasket(){
       <div id ="basketList"></div>  
     </div>
     <div>
-        <ul class="calculator">
-            <div>
-                <li>Zwischensumme</li>
-                <li>${basket[0].price}€</li>
-            </div>
-            <div>
-                <li>Lieferkosten</li>
-                <li>${basket[0].deliveryCosts} €</li>
-            </div>
-            <div>
-                <li>Gesamt</li>
-                <li>${basket[0].price + basket[0].deliveryCosts}€</li>
-            </div>
+        <ul id="calculator" class="calculator">
+
         </ul>
     </div>
     <div class="buttonContainer">
         <button>Bestellen</button>
     </div>
     `;
-    
-    for (let j = 0; j < basket[0].price.length; j++) {        
-       
-        const basketList = document.getElementById('basketList');
-        basketList.innerHTML += `
+
+  for (let j = 0; j < basket[0].name.length; j++) {
+    const basketList = document.getElementById("basketList");
+    const calculator = document.getElementById("calculator");
+    basketList.innerHTML += `
         <ul>
         <li>1</li>
             <li>${basket[0].name[j]}</li>
@@ -106,30 +86,42 @@ function renderBasket(){
             <li>${basket[0].price[j]} €</li>
             <li><img src="img/trash-can.png" alt=""></li>
             </ul>
-        `; 
-        
-    }
-}function addBasket (i){
-basket[0].name.push(dishes[i].name);
-basket[0].price.push(dishes[i].price);
-renderBasket()
+        `;
+    calculator.innerHTML = `<div>
+                <li>Zwischensumme</li>
+                <li>${basket[0].price}€</li>
+            </div>
+            <div>
+                <li>Lieferkosten</li>
+                <li>${basket[0].deliveryCosts} €</li>
+            </div>
+            <div>
+                <li>Gesamt</li>
+                <li>${basket[0].price + basket[0].deliveryCosts}€</li>
+            </div>`;
+  }
 }
-// zwischensumme 
-function subtotal (){                    
+function addBasket(i) {
+  basket[0].name.push(dishes[i].name);
+  basket[0].price.push(dishes[i].price);
+  renderBasket();
+}
+// zwischensumme
+function subtotal() {
+
 }
 // gesamt
-function total (){ 
+function total() {
+
 }
 // BurgerMenu
 // document.getElementById("navIcon").classList.toggle("open");
 
-
-function toggleMenu() {
-    let menu = document.getElementById("menu");
-    if (menu.style.width === "250px") {
-      menu.style.width = "0";
-    } else {
-      menu.style.width = "250px";
-    }
-  }
-  
+// function toggleMenu() {
+//   let menu = document.getElementById("menu");
+//   if (menu.style.width === "250px") {
+//     menu.style.width = "0";
+//   } else {
+//     menu.style.width = "250px";
+//   }
+// }

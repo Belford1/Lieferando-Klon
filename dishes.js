@@ -59,7 +59,9 @@ let dishes = [
 let basket = [
 {
     name:[],
-    price:[0],
-    deliveryCosts:[1]
+    price:[],
+    subtotal:[],
+    total:[],
+    deliveryCosts:[1],
 },
 ];
