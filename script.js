@@ -87,8 +87,8 @@ function init() {
                     <img src="img/minus.png" alt="">
                 </div>
             </li>
-            <li class ="dichesPrice">${basket[0].price[j].toFixed(2)} €</li>
-
+            <li class ="dichesPrice">${(basket[0].price[j] * basket[0].pieces[j]).toFixed(2)} €</li>
+             
             <li onclick="deletBasket(${j})"><img src="img/trash-can.png" alt=""></li>
           </ul>
           `;
