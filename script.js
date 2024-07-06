@@ -61,7 +61,7 @@ function init() {
       </div>
       <div>
           <ul id="calculator" class="calculator">
-  
+    
           </ul>
       </div>
       <div class="buttonContainer">
@@ -77,21 +77,22 @@ function init() {
     for (let j = 0; j < basket[0].name.length; j++) {
       basketList.innerHTML += `
           <ul>
-          <li>1</li>
-              <li>${basket[0].name[j]}</li>
-              <li>
-                  <div class="borderBasket">
-                      <img src="img/kreuz.png" alt="">
-                  </div>
-                  <div class="borderBasket">
-                      <img src="img/minus.png" alt="">
-                  </div>
-              </li>
-              <li>${basket[0].price[j].toFixed(2)} €</li>
-              <li onclick="deletBasket(${j})") ><img src="img/trash-can.png" alt=""></li>
+            <li class ="dichesPices">${basket[0].pieces[j]}</li>
+            <li class ="dichesName">${basket[0].name[j]}</li>
+            <li>
+                <div class="borderBasket">
+                    <img src="img/kreuz.png" alt="">
+                </div>
+                <div class="borderBasket">
+                    <img src="img/minus.png" alt="">
+                </div>
+            </li>
+            <li class ="dichesPrice">${basket[0].price[j].toFixed(2)} €</li>
+
+            <li onclick="deletBasket(${j})"><img src="img/trash-can.png" alt=""></li>
           </ul>
           `;
-      subtotal += basket[0].price[j];
+      subtotal += basket[0].price[j] * basket[0].pieces[j];
     }
   
     let deliveryCosts = basket[0].deliveryCosts[0];
@@ -114,8 +115,14 @@ function init() {
   }
   
   function addBasket(i) {
-    basket[0].name.push(dishes[i].name);
-    basket[0].price.push(dishes[i].price);
+    const dishIndex = basket[0].name.indexOf(dishes[i].name);
+    if (dishIndex !== -1) {
+      basket[0].pieces[dishIndex] += 1;
+    } else {
+      basket[0].name.push(dishes[i].name);
+      basket[0].price.push(dishes[i].price);
+      basket[0].pieces.push(1);
+    }
     renderBasket();
   }
   
@@ -133,6 +140,8 @@ function init() {
     basket[0].price.splice(index, 1);
     renderBasket();
   }
+
+ 
   
   
   // BurgerMenu

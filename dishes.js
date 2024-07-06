@@ -60,6 +60,7 @@ let basket = [
 {
     name:[],
     price:[],
+    pieces:[1],
     deliveryCosts:[1],
 },
 ];
