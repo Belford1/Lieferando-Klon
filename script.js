@@ -88,7 +88,7 @@ function init() {
                   </div>
               </li>
               <li>${basket[0].price[j].toFixed(2)} €</li>
-              <li><img src="img/trash-can.png" alt=""></li>
+              <li onclick="deletBasket(${j})") ><img src="img/trash-can.png" alt=""></li>
           </ul>
           `;
       subtotal += basket[0].price[j];
@@ -127,6 +127,13 @@ function init() {
     }
     return sum;
   }
+
+  function deletBasket(index) {
+    basket[0].name.splice(index, 1);
+    basket[0].price.splice(index, 1);
+    renderBasket();
+  }
+  
   
   // BurgerMenu
   // document.getElementById("navIcon").classList.toggle("open");
