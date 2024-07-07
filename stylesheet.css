@@ -47,11 +47,13 @@ header {
   justify-content: space-between;
   font-size: 16px;
   padding: 10px;
+  
 }
 .logoContainer {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 250px;
 }
 header img {
   width: 60px;
@@ -83,6 +85,14 @@ nav ul {
   height: 100%;
   object-fit: cover;
 }
+.address{
+  width: 250px;
+}
+.iconContainer{
+  width: 250px;
+  display: flex;
+  justify-content: flex-end;
+}
 /* --------------------------------------------main */
 main {
   display: flex;
@@ -100,7 +110,8 @@ main {
   align-items: center;
 }
 .width60 {
-  width: 60%;
+  max-width: 900px;
+  padding: 30px;
 }
 .menu {
   height: 100%;
@@ -357,7 +368,7 @@ footer a {
     display: none;
   }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 778px) {
 
   .contentSize {
     padding: 20px 30px;
@@ -371,23 +382,16 @@ footer a {
   .address{
     display: none;
   }
+  .iconContainer{
+    display: none;
+  }
 }
 
-@media only screen and (max-width: 400px) {
-  .navOrder {
-    font-size: 30px;
-  }
-  textarea {
-    font-size: 14px;
-  }
-  .contentSize {
-    padding: 10px;
-  }
-  .menu {
-    margin-top: 73px;
-  }
-  .interactionSection button {
-    font-size: 14px;
-    padding: 5px;
-  }
+@media only screen and (max-width: 570px) {
+.stars {
+display: none;
+}
+.infoIqon div {
+  display: none;
+}
 }
