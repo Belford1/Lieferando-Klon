@@ -27,6 +27,9 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+.displaynone{
+  display: none;
+}
 /* ----------------------------------------Header */
 header {
   background-color: orange;
@@ -185,6 +188,7 @@ main {
   width: 70%;
   padding: 10px;
 }
+
 .basket {
   z-index: 2;
   position: fixed;
@@ -194,14 +198,14 @@ main {
   left: 76%;
   box-shadow: -4px 0 4px -2px rgba(0, 0, 0, 0.13);
 }
-.hedlineBasket {
+.headlineBasket {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.basketDishes {
+.basketItem {
   display: flex;
 }
 .basketDishes ul {
@@ -213,16 +217,16 @@ main {
   padding: 10px;
   display: flex;
 }
-.dichesPices {
+.dishesPieces {
   width: 38px;
   display: flex;
   justify-content: flex-end;
 }
-.dichesName {
+.dishesName {
   width: 150px;
 }
-.dichesPrice {
-  width: 75px;
+.dishesPrice {
+  width: 85px;
   display: flex;
   justify-content: flex-end;
 }
