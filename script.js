@@ -1,4 +1,5 @@
 let deliveryCosts = 1;
+let showMobileBasket = false;
 
 function init() {
   let topImg = document.getElementById("topContainer");
@@ -30,7 +31,11 @@ function dishesRender() {
                 <div>
                     <div class="dishes">
                         <h3>${dishes[i].name}</h3>
-                        <div onclick="addBasket(${i})" id="cross${i}" class="cross">
+                        <div onclick="addBasket(${i})" id="cross" class="cross">
+                            <img src="img/kreuz.png" alt="">
+                        </div>
+                         <div onclick="addBasket(${i}); renderMobileBasket();basketControl();toggleMenu()" id="cross2" class="cross2">
+
                             <img src="img/kreuz.png" alt="">
                         </div>
                     </div>
@@ -44,9 +49,28 @@ function dishesRender() {
             </div>`;
   }
 }
+function renderMobileBasket(){
+  const basketContainer = document.getElementById("menu");
+
+  basketContainer.innerHTML = `
+        <div class="headlineBasket">
+            <h3>Warenkorb</h3>
+        </div>
+        <div class="basketDishes" id="basketList"></div>
+        <div class="calculatorContainer">
+            <ul id="calculator" class="calculator"></ul>
+        </div>
+        <div class="buttonContainer">
+            <button>Bestellen</button>
+        </div>
+    `;
+    showMobileBasket = true;
+  dishesBasket();
+}  
 
 function renderBasket() {
   const basketContainer = document.getElementById("basketContainer");
+
   basketContainer.innerHTML = `
         <div class="headlineBasket">
             <h3>Warenkorb</h3>
@@ -63,11 +87,11 @@ function renderBasket() {
 }
 
 function dishesBasket() {
-    const basketList = document.getElementById("basketList");
-    let subtotal = 0;
+  const basketList = document.getElementById("basketList");
+  let subtotal = 0;
 
-    for (let j = 0; j < basket.length; j++) {
-        basketList.innerHTML += `
+  for (let j = 0; j < basket.length; j++) {
+    basketList.innerHTML += `
             <ul class="basketItem">
                 <li class="dishesPieces">${basket[j].pieces}</li>
                 <li class="dishesName">${basket[j].name}</li>
@@ -79,25 +103,26 @@ function dishesBasket() {
                         <img src="img/minus.png" alt="">
                     </div>
                 </li>
-                <li class="dishesPrice">${(basket[j].price * basket[j].pieces).toFixed(2)} €</li>
+                <li class="dishesPrice">${(
+                  basket[j].price * basket[j].pieces
+                ).toFixed(2)} €</li>
                 <li onclick="deletBasket(${j})" class="trashIcon">
                     <img src="img/trash-can.png" alt="">
                 </li>
             </ul>
         `;
-        subtotal += basket[j].price * basket[j].pieces;
-    }
+    subtotal += basket[j].price * basket[j].pieces;
+  }
 
-    calculateBasket(subtotal);
-    
+  calculateBasket(subtotal);
 }
 
 function calculateBasket(subtotal) {
-    const calculator = document.getElementById("calculator");
+  const calculator = document.getElementById("calculator");
 
-    let total = subtotal + deliveryCosts;
+  let total = subtotal + deliveryCosts;
 
-    calculator.innerHTML = `
+  calculator.innerHTML = `
         <div>
             <li>Zwischensumme</li>
             <li>${subtotal.toFixed(2)} €</li>
@@ -111,7 +136,20 @@ function calculateBasket(subtotal) {
             <li>${total.toFixed(2)} €</li>
         </div>
     `;
-    toggleBasket();
+  toggleBasket();
+  
+}
+
+function basketControl() {
+if (showMobileBasket=== false) {
+  renderBasket()
+} else {
+  const basketShadow = document.getElementById("basketShadow");
+  const basketContainer = document.getElementById("basketContainer");
+  basketContainer.classList.add("displaynone");
+  basketShadow.classList.add("displaynone");
+  renderMobileBasket()
+}
 }
 
 function addBasket(i) {
@@ -127,12 +165,12 @@ function addBasket(i) {
       pieces: 1,
     });
   }
-  renderBasket();
+  basketControl() 
 }
 
 function deletBasket(index) {
   basket.splice(index, 1);
-  renderBasket();
+  basketControl() 
 }
 
 function deletPices(index) {
@@ -141,33 +179,40 @@ function deletPices(index) {
   } else {
     deletBasket(index);
   }
-  renderBasket();
+  basketControl() 
 }
 
 function addPieces(index) {
   basket[index].pieces += 1;
-  renderBasket();
+  basketControl() 
 }
 
 function toggleBasket() {
   const basketContainer = document.getElementById("basketContainer");
-  if (basket.length === 0) {
-    basketContainer.classList.add("displaynone");
-  } else {
-    basketContainer.classList.remove("displaynone");
+  const basketShadow = document.getElementById("basketShadow");
+
+  if (!showMobileBasket) { // Wenn showMobileBasket false ist
+    if (basket.length === 0) {
+      basketContainer.classList.add("displaynone");
+      basketShadow.classList.add("displaynone");
+    } else {
+      basketContainer.classList.remove("displaynone");
+      basketShadow.classList.remove("displaynone");
+    }
   }
 }
 
+
 // BurgerMenu
 function toggleIcon() {
-    document.getElementById("navIcon").classList.toggle("open");
+  document.getElementById("navIcon").classList.toggle("open");
+}
+
+function toggleMenu() {
+  var menu = document.getElementById("menu");
+  if (menu.style.width === "100%") {
+    menu.style.width = "0";
+  } else {
+    menu.style.width = "100%";
   }
-  
-  function toggleMenu() {
-    var menu = document.getElementById("menu");
-    if (menu.style.width === "100%") {
-      menu.style.width = "0";
-    } else {
-      menu.style.width = "100%";
-    }
-  }
+}
