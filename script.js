@@ -34,7 +34,7 @@ function dishesRender() {
                         <div onclick="addBasket(${i})" id="cross" class="cross">
                             <img src="img/kreuz.png" alt="">
                         </div>
-                         <div onclick="addBasket(${i}); renderMobileBasket();basketControl();toggleMenu();toggleIcon()" id="cross2" class="cross2">
+                         <div onclick="addBasket(${i}); renderMobileBasket();basketControl();toggleMenu();toggleIcon();scrollToTop()" id="cross2" class="cross2">
 
                             <img src="img/kreuz.png" alt="">
                         </div>
@@ -200,6 +200,13 @@ function toggleBasket() {
       basketShadow.classList.remove("displaynone");
     }
   }
+}
+
+function scrollToTop() {
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  });
 }
 
 
