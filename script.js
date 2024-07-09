@@ -13,10 +13,10 @@ function init() {
             <img class="stars" src="img/bewertung.png" alt="">
         </div>
         <div class="infoIqon">
-            <div>
+            <div class = "i">
                 <span>I</span>
             </div>
-            <div>
+            <div class="heart">
                 <img src="img/mogen.png" alt="">
             </div>
         </div>
@@ -61,7 +61,7 @@ function renderMobileBasket(){
             <ul id="calculator" class="calculator"></ul>
         </div>
         <div class="buttonContainer">
-            <button>Bestellen</button>
+          <a href="#" class="myButton">Bestellen</a>
         </div>
     `;
     showMobileBasket = true;
@@ -80,7 +80,7 @@ function renderBasket() {
             <ul id="calculator" class="calculator"></ul>
         </div>
         <div class="buttonContainer">
-            <button>Bestellen</button>
+          <a href="#" class="myButton">Bestellen</a>
         </div>
     `;
   dishesBasket();
