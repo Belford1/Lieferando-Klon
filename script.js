@@ -60,7 +60,7 @@ function renderMobileBasket(){
         <div class="calculatorContainer">
             <ul id="calculator" class="calculator"></ul>
         </div>
-        <div class="buttonContainer">
+        <div onclick="window.location.href='orderConfirmation.html'" class="buttonContainer">
           <a href="#" class="myButton">Bestellen</a>
         </div>
     `;
@@ -79,7 +79,7 @@ function renderBasket() {
         <div class="calculatorContainer">
             <ul id="calculator" class="calculator"></ul>
         </div>
-        <div class="buttonContainer">
+        <div onclick="window.location.href='orderConfirmation.html'" class="buttonContainer">
           <a href="#" class="myButton">Bestellen</a>
         </div>
     `;
@@ -168,6 +168,8 @@ function addBasket(i) {
   basketControl() 
 }
 
+
+
 function deletBasket(index) {
   basket.splice(index, 1);
   basketControl() 
@@ -191,7 +193,7 @@ function toggleBasket() {
   const basketContainer = document.getElementById("basketContainer");
   const basketShadow = document.getElementById("basketShadow");
 
-  if (!showMobileBasket) { // Wenn showMobileBasket false ist
+  if (!showMobileBasket) {
     if (basket.length === 0) {
       basketContainer.classList.add("displaynone");
       basketShadow.classList.add("displaynone");

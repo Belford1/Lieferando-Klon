@@ -391,6 +391,26 @@ footer a {
   color: white;
 }
 
+/* ------------------------------Order Confirmation */
+.confirmationContainer{
+  display: flex;
+  align-items: center
+  
+}
+.confirmationMain{
+text-align: center;
+  margin-top: 100px;
+
+}
+.confirmationContainer img {
+margin: 20px;
+margin-right: 5px;
+width: 40px;
+}
+
+.confirmationContainer h1{
+  margin-left: 10px;
+}
 
 /*------------------------------------- Responsive */
 
@@ -432,6 +452,12 @@ footer a {
   }
   .infoIqon div {
     display: none;
+  }
+  .confirmationContainer {
+    flex-direction: column;
+  }
+  .logoContainer{
+    font-size: 20px;
   }
 }
 
