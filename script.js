@@ -4,7 +4,11 @@ let showMobileBasket = false;
 function init() {
   let topImg = document.getElementById("topContainer");
   let info = document.getElementById("infoContainer");
+  htmlInit(topImg, info);
 
+  dishesRender();
+}
+function htmlInit(topImg, info) {
   topImg.innerHTML = '<img src="img/pizza-5275191_1280.jpg" alt="">';
   info.innerHTML = `
     <div class="info">
@@ -21,56 +25,71 @@ function init() {
             </div>
         </div>
     </div>`;
-  dishesRender();
+  return;
 }
 function dishesRender() {
   const dishesContainer = document.getElementById("dishesContainer");
   for (let i = 0; i < dishes.length; i++) {
-    dishesContainer.innerHTML += `
-            <div class="dishesContainers">
-                <div>
-                    <div class="dishes">
-                        <h3>${dishes[i].name}</h3>
-                        <div onclick="addBasket(${i})" id="cross" class="cross">
-                            <img src="img/kreuz.png" alt="">
-                        </div>
-                         <div onclick="addBasket(${i}); renderMobileBasket();basketControl();toggleMenu();toggleIcon();scrollToTop()" id="cross2" class="cross2">
-
-                            <img src="img/kreuz.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="dishesInfo">
-                    <h5>${dishes[i].info}</h5>
-                </div>
-                <div>
-                    <h5>${dishes[i].price.toFixed(2)} €</h5>
-                </div>
-            </div>`;
+    dishesRenderHTML(dishesContainer, i);
   }
 }
-function renderMobileBasket(){
-  const basketContainer = document.getElementById("menu");
+function dishesRenderHTML(dishesContainer, i) {
+  dishesContainer.innerHTML += `
+  <div class="dishesContainers">
+      <div>
+          <div class="dishes">
+              <h3>${dishes[i].name}</h3>
+              <div onclick="addBasket(${i})" id="cross" class="cross">
+                  <img src="img/kreuz.png" alt="">
+              </div>
+               <div onclick="addBasket(${i}); renderMobileBasket();basketControl();" id="cross2" class="cross2">
 
-  basketContainer.innerHTML = `
-        <div class="headlineBasket">
-            <h3>Warenkorb</h3>
-        </div>
-        <div class="basketDishes" id="basketList"></div>
-        <div class="calculatorContainer">
-            <ul id="calculator" class="calculator"></ul>
-        </div>
-        <div onclick="window.location.href='orderConfirmation.html'" class="buttonContainer">
-          <a href="#" class="myButton">Bestellen</a>
-        </div>
-    `;
-    showMobileBasket = true;
+                  <img src="img/kreuz.png" alt="">
+              </div>
+          </div>
+      </div>
+      <div class="dishesInfo">
+          <h5>${dishes[i].info}</h5>
+      </div>
+      <div>
+          <h5>${dishes[i].price.toFixed(2)} €</h5>
+      </div>
+  </div>`;
+  return;
+}
+
+function renderMobileBasket() {
+  const basketContainer = document.getElementById("menu");
+  renderMobileBasketHTML(basketContainer);
+
+  showMobileBasket = true;
   dishesBasket();
-}  
+
+}
+
+function renderMobileBasketHTML(basketContainer) {
+  basketContainer.innerHTML = `
+  <div class="headlineBasket">
+      <h3>Warenkorb</h3>
+  </div>
+  <div class="basketDishes" id="basketList"></div>
+  <div class="calculatorContainer">
+      <ul id="calculator" class="calculator"></ul>
+  </div>
+  <div onclick="window.location.href='orderConfirmation.html'" class="buttonContainer">
+    <a href="#" class="myButton">Bestellen</a>
+  </div>
+`;
+  return;
+}
 
 function renderBasket() {
   const basketContainer = document.getElementById("basketContainer");
+  renderBasketHTML(basketContainer);
 
+  dishesBasket();
+}
+function renderBasketHTML(basketContainer) {
   basketContainer.innerHTML = `
         <div class="headlineBasket">
             <h3>Warenkorb</h3>
@@ -83,73 +102,81 @@ function renderBasket() {
           <a href="#" class="myButton">Bestellen</a>
         </div>
     `;
-  dishesBasket();
+  return;
 }
-
 function dishesBasket() {
   const basketList = document.getElementById("basketList");
   let subtotal = 0;
 
   for (let j = 0; j < basket.length; j++) {
-    basketList.innerHTML += `
-            <ul class="basketItem">
-                <li class="dishesPieces">${basket[j].pieces}</li>
-                <li class="dishesName">${basket[j].name}</li>
-                <li class="basketControls">
-                    <div onclick="addPieces(${j})" class="borderBasket">
-                        <img src="img/kreuz.png" alt="">
-                    </div>
-                    <div onclick="deletPices(${j})" class="borderBasket">
-                        <img src="img/minus.png" alt="">
-                    </div>
-                </li>
-                <li class="dishesPrice">${(
-                  basket[j].price * basket[j].pieces
-                ).toFixed(2)} €</li>
-                <li onclick="deletBasket(${j})" class="trashIcon">
-                    <img src="img/trash-can.png" alt="">
-                </li>
-            </ul>
-        `;
+    dishesBasketHTML(basketList, j);
     subtotal += basket[j].price * basket[j].pieces;
   }
 
   calculateBasket(subtotal);
 }
+function dishesBasketHTML(basketList, j) {
+  basketList.innerHTML += `
+  <ul class="basketItem">
+      <li class="dishesPieces">${basket[j].pieces}</li>
+      <li class="dishesName">${basket[j].name}</li>
+      <li class="basketControls">
+          <div onclick="addPieces(${j})" class="borderBasket">
+              <img src="img/kreuz.png" alt="">
+          </div>
+          <div onclick="deletPices(${j})" class="borderBasket">
+              <img src="img/minus.png" alt="">
+          </div>
+      </li>
+      <li class="dishesPrice">${(basket[j].price * basket[j].pieces).toFixed(
+        2
+      )} €</li>
+      <li onclick="deletBasket(${j})" class="trashIcon">
+          <img src="img/trash-can.png" alt="">
+      </li>
+  </ul>
+`;
+
+  return;
+}
+
+
 
 function calculateBasket(subtotal) {
   const calculator = document.getElementById("calculator");
 
   let total = subtotal + deliveryCosts;
 
-  calculator.innerHTML = `
-        <div>
-            <li>Zwischensumme</li>
-            <li>${subtotal.toFixed(2)} €</li>
-        </div>
-        <div>
-            <li>Lieferkosten</li>
-            <li>${deliveryCosts.toFixed(2)} €</li>
-        </div>
-        <div>
-            <li>Gesamt</li>
-            <li>${total.toFixed(2)} €</li>
-        </div>
-    `;
+  calculateBasketHTML(subtotal, calculator, total);
   toggleBasket();
-  
+}
+function calculateBasketHTML(subtotal, calculator, total) {
+  calculator.innerHTML = `
+  <div>
+      <li>Zwischensumme</li>
+      <li>${subtotal.toFixed(2)} €</li>
+  </div>
+  <div>
+      <li>Lieferkosten</li>
+      <li>${deliveryCosts.toFixed(2)} €</li>
+  </div>
+  <div>
+      <li>Gesamt</li>
+      <li>${total.toFixed(2)} €</li>
+  </div>
+`;
+  return;
 }
 
+
 function basketControl() {
-if (showMobileBasket=== false) {
-  renderBasket()
-} else {
-  const basketShadow = document.getElementById("basketShadow");
-  const basketContainer = document.getElementById("basketContainer");
-  basketContainer.classList.add("displaynone");
-  basketShadow.classList.add("displaynone");
-  renderMobileBasket()
-}
+  if (showMobileBasket === false) {
+    renderBasket();
+  } else {
+    const basketContainer = document.getElementById("basketContainer");
+    basketContainer.classList.add("displaynone");
+    renderMobileBasket();
+  }
 }
 
 function addBasket(i) {
@@ -165,14 +192,12 @@ function addBasket(i) {
       pieces: 1,
     });
   }
-  basketControl() 
+  basketControl();
 }
-
-
 
 function deletBasket(index) {
   basket.splice(index, 1);
-  basketControl() 
+  basketControl();
 }
 
 function deletPices(index) {
@@ -181,36 +206,35 @@ function deletPices(index) {
   } else {
     deletBasket(index);
   }
-  basketControl() 
+  basketControl();
 }
 
 function addPieces(index) {
   basket[index].pieces += 1;
-  basketControl() 
+  basketControl();
 }
 
 function toggleBasket() {
   const basketContainer = document.getElementById("basketContainer");
-  const basketShadow = document.getElementById("basketShadow");
+  const basketLogo = document.getElementById("basketLogo");
 
-  if (!showMobileBasket) {
+  
     if (basket.length === 0) {
+      basketLogo.classList.add("displaynone");
       basketContainer.classList.add("displaynone");
-      basketShadow.classList.add("displaynone");
     } else {
+      basketLogo.classList.remove("displaynone");
       basketContainer.classList.remove("displaynone");
-      basketShadow.classList.remove("displaynone");
     }
-  }
+  
 }
 
 function scrollToTop() {
   window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+    top: 0,
+    behavior: "smooth",
   });
 }
-
 
 // BurgerMenu
 function toggleIcon() {
