@@ -239,6 +239,8 @@ connst = basketLogo = document.getElementById("basketLogo");
   
 }
 
+
+
 function scrollToTop() {
   window.scrollTo({
     top: 0,

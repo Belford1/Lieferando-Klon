@@ -232,7 +232,7 @@ main {
   padding-bottom: 10px;
   margin-top: 84px;
   margin-bottom: 30px;
-  margin-right: 10px;
+  
 
 
 }
@@ -489,9 +489,7 @@ width: 40px;
   .topContainer {
     margin-top: 80px;
   }
-  /* .basketLogo{
-    display: flex;
-  } */
+
 }
 
 @media only screen and (max-width: 461px) {
@@ -520,4 +518,10 @@ h3{
 .dishesPrice , .dishesPieces,.dishesName{
   width: auto;
 }
+}
+
+@media (min-width: 461px) {
+  .basketLogo{
+    display: none;
+  }
 }
