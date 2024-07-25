@@ -68,7 +68,15 @@ nav ul {
 .logoContainer {
   font-size: 32px;
 }
-
+.test{
+  display: flex;
+  flex-direction: row-reverse;
+}
+.test2{
+  display: flex;
+  width: 100%;
+  flex-direction:column;
+}
 .topContainer {
   margin-top: 84px;
   width: 100%;
@@ -216,13 +224,13 @@ main {
   z-index: 3;
   position: sticky;
   background-color: white;
-  height: 100%;
+  height: 100vh;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 1px 1px 0 rgba(0, 0, 0, 0.11);
   right: 0px;
-  top: 10px;
+ top: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-top: 20px;
+  margin-top: 84px;
   margin-bottom: 30px;
   margin-right: 10px;
 
@@ -505,6 +513,9 @@ width: 40px;
 .basketDishes ul{
   flex-direction: column;
 
+}
+h3{
+  font-size: 0.99em;
 }
 .dishesPrice , .dishesPieces,.dishesName{
   width: auto;

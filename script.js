@@ -216,14 +216,14 @@ function addPieces(index) {
 
 function toggleBasket() {
   const basketContainer = document.getElementById("basketContainer");
-  const basketLogo = document.getElementById("basketLogo");
+
 
   
     if (basket.length === 0) {
       basketLogo.classList.add("displaynone");
       basketContainer.classList.add("displaynone");
     } else {
-      basketLogo.classList.remove("displaynone");
+    
       basketContainer.classList.remove("displaynone");
     }
   
