@@ -216,15 +216,18 @@ function addPieces(index) {
 
 function toggleBasket() {
   const basketContainer = document.getElementById("basketContainer");
-
+const menuMobile = document.getElementById("menu");
 
   
     if (basket.length === 0) {
       basketLogo.classList.add("displaynone");
       basketContainer.classList.add("displaynone");
+      menuMobile.classList.add("displaynone");
+      toggleIcon()
     } else {
-    
+      menuMobile.classList.remove("displaynone");
       basketContainer.classList.remove("displaynone");
+      
     }
   
 }
