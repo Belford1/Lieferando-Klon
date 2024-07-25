@@ -206,6 +206,7 @@ function deletPices(index) {
     basket[index].pieces -= 1;
   } else {
     deletBasket(index);
+    toggleBasket()
   }
   basketControl();
 }
