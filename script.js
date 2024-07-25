@@ -197,6 +197,7 @@ function addBasket(i) {
 
 function deletBasket(index) {
   basket.splice(index, 1);
+ 
   basketControl();
 }
 
@@ -217,17 +218,22 @@ function addPieces(index) {
 function toggleBasket() {
   const basketContainer = document.getElementById("basketContainer");
 const menuMobile = document.getElementById("menu");
-
+connst = basketLogo = document.getElementById("basketLogo");
   
     if (basket.length === 0) {
       basketLogo.classList.add("displaynone");
       basketContainer.classList.add("displaynone");
       menuMobile.classList.add("displaynone");
+      basketLogo.classList.add("displaynone");
       toggleIcon()
+      toggleMenu()
+      
+      
     } else {
       menuMobile.classList.remove("displaynone");
       basketContainer.classList.remove("displaynone");
-      
+      basketLogo.classList.remove("displaynone");
+     
     }
   
 }

@@ -328,7 +328,7 @@ main {
   bottom: 20px;
   right: 20px;
   cursor: pointer;
-  display: none;
+  
 
 }
 .basketLogo img {
@@ -489,9 +489,9 @@ width: 40px;
   .topContainer {
     margin-top: 80px;
   }
-  .basketLogo{
+  /* .basketLogo{
     display: flex;
-  }
+  } */
 }
 
 @media only screen and (max-width: 461px) {
